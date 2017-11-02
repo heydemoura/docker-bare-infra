@@ -11,6 +11,7 @@ services:
     image: mysql:5.7
     volumes:
       - db_data:/var/lib/mysql
+      - ./myqsl/scripts:/docker-entrypoint-initdb.d
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: supersecretpw
@@ -40,8 +41,13 @@ services:
     image: nginx:latest
     ports:
       - "80:80"
+    environment:
+      NGINX_HOST: 172.18.0.1
     volumes:
-      - ./nginx/blog.conf:/etc/nginx/default.conf/
+      - ./nginx/conf.d/:/etc/nginx/conf.d/
+      - ./nginx/default.d/:/etc/nginx/default.d/
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+    command: /bin/bash -c "envsubst < /etc/nginx/conf.d/conf.template > /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'"
 
 volumes:
   db_data:
