@@ -1,16 +1,22 @@
 version: '3'
 
 services:
+  reactapp:
+    build: app/
+    image: reactapp:test
+    ports:
+      - "3000:3000"
+
   db:
     image: mysql:5.7
-      volumes:
-        - db_data:/var/lib/mysql
-      restart: always
-      environment:
-        MYSQL_ROOT_PASSWORD: supersecretpw
-        MYSQL_DATABASE: wordpress
-        MYSQL_USER: wordpress
-        MYSQL_PASSWORD: wordpress
+    volumes:
+      - db_data:/var/lib/mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: supersecretpw
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: wordpress
+      MYSQL_PASSWORD: wordpress
 
   adminer:
     image: adminer
@@ -29,7 +35,7 @@ services:
       WORDPRESS_DB_HOST: db:3306
       WORDPRESS_DB_USER: wordpress
       WORDPRESS_DB_PASSWORD: wordpress
-
+  
   nginx:
     image: nginx:latest
     ports:
