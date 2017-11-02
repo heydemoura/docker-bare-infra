@@ -11196,7 +11196,7 @@ module.exports = getEventCharCode;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__HashRouter__ = __webpack_require__(336);
 /* unused harmony reexport HashRouter */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Link__ = __webpack_require__(154);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_2__Link__["a"]; });
+/* unused harmony reexport Link */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__MemoryRouter__ = __webpack_require__(338);
 /* unused harmony reexport MemoryRouter */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__NavLink__ = __webpack_require__(341);
@@ -11206,15 +11206,15 @@ module.exports = getEventCharCode;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__Redirect__ = __webpack_require__(346);
 /* unused harmony reexport Redirect */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__Route__ = __webpack_require__(155);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return __WEBPACK_IMPORTED_MODULE_7__Route__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_7__Route__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__Router__ = __webpack_require__(86);
 /* unused harmony reexport Router */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__StaticRouter__ = __webpack_require__(352);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return __WEBPACK_IMPORTED_MODULE_9__StaticRouter__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return __WEBPACK_IMPORTED_MODULE_9__StaticRouter__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__Switch__ = __webpack_require__(354);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return __WEBPACK_IMPORTED_MODULE_10__Switch__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return __WEBPACK_IMPORTED_MODULE_10__Switch__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__matchPath__ = __webpack_require__(356);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return __WEBPACK_IMPORTED_MODULE_11__matchPath__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return __WEBPACK_IMPORTED_MODULE_11__matchPath__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__withRouter__ = __webpack_require__(357);
 /* unused harmony reexport withRouter */
 
@@ -20267,11 +20267,13 @@ var routes = [{
 }, {
   path: "/user/:username?",
   exact: true,
-  component: __WEBPACK_IMPORTED_MODULE_1__pages_User__["a" /* default */]
+  component: __WEBPACK_IMPORTED_MODULE_1__pages_User__["a" /* default */],
+  loadData: __WEBPACK_IMPORTED_MODULE_1__pages_User__["a" /* default */].fetchInitialState
 }, {
   path: "/user/:username?/repos",
   exact: true,
-  component: __WEBPACK_IMPORTED_MODULE_2__pages_UserRepos__["a" /* default */]
+  component: __WEBPACK_IMPORTED_MODULE_2__pages_UserRepos__["a" /* default */],
+  loadData: __WEBPACK_IMPORTED_MODULE_2__pages_UserRepos__["a" /* default */].fetchInitialState
 }];
 
 /* harmony default export */ __webpack_exports__["a"] = (routes);
@@ -20760,26 +20762,31 @@ app.use(__WEBPACK_IMPORTED_MODULE_1_cors___default()());
 app.use(__WEBPACK_IMPORTED_MODULE_0_express___default.a.static("public"));
 
 app.get("*", function (req, res, next) {
+  var match = void 0;
   var currentRoute = __WEBPACK_IMPORTED_MODULE_7__shared_routes__["a" /* default */].find(function (route) {
-    return Object(__WEBPACK_IMPORTED_MODULE_4_react_router_dom__["e" /* matchPath */])(req.url, route);
+    var matchTest = Object(__WEBPACK_IMPORTED_MODULE_4_react_router_dom__["d" /* matchPath */])(req.url, route);
+    if (matchTest) {
+      match = matchTest;
+      return true;
+    }
   });
 
-  var fetchInitialState = currentRoute.component.fetchInitialState && currentRoute.component.fetchInitialState();
+  var fetchInitialState = currentRoute.loadData && currentRoute.loadData(match.params);
 
   Promise.resolve(fetchInitialState).then(function (initialState) {
     var context = { initialState: initialState };
     var markup = Object(__WEBPACK_IMPORTED_MODULE_3_react_dom_server__["renderToString"])(__WEBPACK_IMPORTED_MODULE_2_react___default.a.createElement(
-      __WEBPACK_IMPORTED_MODULE_4_react_router_dom__["c" /* StaticRouter */],
+      __WEBPACK_IMPORTED_MODULE_4_react_router_dom__["b" /* StaticRouter */],
       { location: req.url, context: context, __source: {
           fileName: _jsxFileName,
-          lineNumber: 28
+          lineNumber: 35
         },
         __self: _this
       },
       __WEBPACK_IMPORTED_MODULE_2_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6__shared_App__["a" /* default */], {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 29
+          lineNumber: 36
         },
         __self: _this
       })
@@ -49345,7 +49352,7 @@ var _jsxFileName = "/u01/Projects/Gronda/app/src/shared/App.js",
 
 var App = function App() {
   return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-    __WEBPACK_IMPORTED_MODULE_1_react_router_dom__["d" /* Switch */],
+    __WEBPACK_IMPORTED_MODULE_1_react_router_dom__["c" /* Switch */],
     {
       __source: {
         fileName: _jsxFileName,
@@ -49354,7 +49361,7 @@ var App = function App() {
       __self: _this
     },
     __WEBPACK_IMPORTED_MODULE_2__routes__["a" /* default */].map(function (route, i) {
-      return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_react_router_dom__["b" /* Route */], Object.assign({ key: i }, route, {
+      return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_react_router_dom__["a" /* Route */], Object.assign({ key: i }, route, {
         __source: {
           fileName: _jsxFileName,
           lineNumber: 8
@@ -50702,6 +50709,7 @@ module.exports = function spread(callback) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_router_dom__ = __webpack_require__(83);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_axios__ = __webpack_require__(90);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_axios__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__config_js__ = __webpack_require__(396);
 var _jsxFileName = "/u01/Projects/Gronda/app/src/shared/pages/User/index.js";
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -50711,6 +50719,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
 
 
 
@@ -50732,7 +50741,7 @@ var User = function (_React$Component) {
       initialState = props.staticContext.initialState;
     }
 
-    _this.state = { user: initialState };
+    _this.state = Object.assign({}, initialState);
     return _this;
   }
 
@@ -50742,25 +50751,23 @@ var User = function (_React$Component) {
       var _this2 = this;
 
       if (!this.state.user) {
-        User.fetchInitialState().then(function (user) {
+        User.fetchInitialState(this.props.match.params).then(function (user) {
           return _this2.setState({ user: user });
+        }).catch(function (error) {
+          return _this2.setState(Object.assign({}, _this2.state, { error: error.response.data }));
         });
       }
     }
   }, {
     key: "render",
     value: function render() {
-      return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-        "div",
-        {
-          __source: {
-            fileName: _jsxFileName,
-            lineNumber: 39
-          },
-          __self: this
-        },
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          "h1",
+      var _state = this.state,
+          user = _state.user,
+          error = _state.error;
+
+      if (user) {
+        return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          "div",
           {
             __source: {
               fileName: _jsxFileName,
@@ -50768,19 +50775,19 @@ var User = function (_React$Component) {
             },
             __self: this
           },
-          this.state.user.name
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          "ul",
-          {
-            __source: {
-              fileName: _jsxFileName,
-              lineNumber: 41
-            },
-            __self: this
-          },
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            "li",
+            "h1",
+            {
+              __source: {
+                fileName: _jsxFileName,
+                lineNumber: 41
+              },
+              __self: this
+            },
+            this.state.user.name
+          ),
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            "ul",
             {
               __source: {
                 fileName: _jsxFileName,
@@ -50789,29 +50796,48 @@ var User = function (_React$Component) {
               __self: this
             },
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-              __WEBPACK_IMPORTED_MODULE_1_react_router_dom__["a" /* Link */],
-              { to: "/user/" + this.state.user.login + "/repos", __source: {
+              "li",
+              {
+                __source: {
                   fileName: _jsxFileName,
-                  lineNumber: 42
+                  lineNumber: 43
                 },
                 __self: this
               },
-              "Repositories"
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                "a",
+                { href: "/user/" + user.login + "/repos", __source: {
+                    fileName: _jsxFileName,
+                    lineNumber: 43
+                  },
+                  __self: this
+                },
+                "Repositories"
+              )
             )
           )
-        )
-      );
+        );
+      } else {
+        return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          "h1",
+          {
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 48
+            },
+            __self: this
+          },
+          error.message
+        );
+      }
     }
   }], [{
     key: "fetchInitialState",
-    value: function fetchInitialState() {
-      return __WEBPACK_IMPORTED_MODULE_2_axios___default()({
-        method: "GET",
-        url: "https://api.github.com/users/heydemoura"
-      }).then(function (response) {
-        return response.data;
+    value: function fetchInitialState(params) {
+      return __WEBPACK_IMPORTED_MODULE_2_axios___default()(__WEBPACK_IMPORTED_MODULE_3__config_js__["a" /* api */].getUser(params.username)).then(function (response) {
+        return { user: response.data };
       }).catch(function (error) {
-        return console.log(error);
+        return { error: error.response.data };
       });
     }
   }]);
@@ -50830,7 +50856,8 @@ var User = function (_React$Component) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios__ = __webpack_require__(90);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_axios__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_RepositoryList__ = __webpack_require__(392);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__config_js__ = __webpack_require__(396);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_RepositoryList__ = __webpack_require__(392);
 var _jsxFileName = "/u01/Projects/Gronda/app/src/shared/pages/UserRepos/index.js";
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -50862,7 +50889,7 @@ var UserRepos = function (_React$Component) {
       initialState = props.staticContext.initialState;
     }
 
-    _this.state = { repositories: initialState };
+    _this.state = Object.assign({}, initialState);
     return _this;
   }
 
@@ -50872,8 +50899,10 @@ var UserRepos = function (_React$Component) {
       var _this2 = this;
 
       if (!this.state.repositories) {
-        UserRepos.fetchInitialState().then(function (repositories) {
+        UserRepos.fetchInitialState(this.props.match.params).then(function (repositories) {
           return _this2.setState({ repositories: repositories });
+        }).catch(function (error) {
+          return _this2.setState(Object.assign({}, _this2.state, { error: error.response.data }));
         });
       }
     }
@@ -50885,17 +50914,46 @@ var UserRepos = function (_React$Component) {
       }, []);
     }
   }, {
+    key: "renderRepositoryList",
+    value: function renderRepositoryList(repos, error) {
+      var handleRepositoriesData = this.handleRepositoriesData;
+
+      if (Array.isArray(repos) && repos.length) {
+        return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__components_RepositoryList__["a" /* default */], { repositories: handleRepositoriesData(repos), __source: {
+            fileName: _jsxFileName,
+            lineNumber: 43
+          },
+          __self: this
+        });
+      } else {
+        return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          "h3",
+          {
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 45
+            },
+            __self: this
+          },
+          error.message
+        );
+      }
+    }
+  }, {
     key: "render",
     value: function render() {
-      var handleRepositoriesData = this.handleRepositoriesData;
-      var repositories = this.state.repositories;
+      var renderRepositoryList = this.renderRepositoryList;
+      var _state = this.state,
+          repositories = _state.repositories,
+          error = _state.error;
 
+      console.log(error);
       return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
         "div",
         {
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 46
+            lineNumber: 54
           },
           __self: this
         },
@@ -50904,40 +50962,22 @@ var UserRepos = function (_React$Component) {
           {
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 47
+              lineNumber: 55
             },
             __self: this
           },
           "Repositories"
         ),
-        repositories ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__components_RepositoryList__["a" /* default */], { repositories: handleRepositoriesData(repositories), __source: {
-            fileName: _jsxFileName,
-            lineNumber: 49
-          },
-          __self: this
-        }) : __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          "h3",
-          {
-            __source: {
-              fileName: _jsxFileName,
-              lineNumber: 50
-            },
-            __self: this
-          },
-          "Something Happened"
-        )
+        renderRepositoryList.bind(this)(repositories, error)
       );
     }
   }], [{
     key: "fetchInitialState",
-    value: function fetchInitialState() {
-      return __WEBPACK_IMPORTED_MODULE_1_axios___default()({
-        method: "GET",
-        url: "https://api.github.com/users/heydemoura/repos"
-      }).then(function (response) {
-        return response.data;
+    value: function fetchInitialState(params) {
+      return __WEBPACK_IMPORTED_MODULE_1_axios___default()(__WEBPACK_IMPORTED_MODULE_2__config_js__["a" /* api */].getUserRepos(params.username)).then(function (response) {
+        return { repositories: response.data };
       }).catch(function (error) {
-        return console.log(error);
+        return { error: error.response.data };
       });
     }
   }]);
@@ -51110,6 +51150,30 @@ var _jsxFileName = "/u01/Projects/Gronda/app/src/shared/components/Repository/in
 /***/ (function(module, exports) {
 
 
+
+/***/ }),
+/* 396 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return api; });
+var API_URL = "http://api.github.com";
+
+var api = {
+  getUser: function getUser(username) {
+    return {
+      method: 'GET',
+      url: API_URL + ('/users/' + username)
+    };
+  },
+
+  getUserRepos: function getUserRepos(username) {
+    return {
+      method: 'GET',
+      url: API_URL + ('/users/' + username + '/repos')
+    };
+  }
+};
 
 /***/ })
 /******/ ]);

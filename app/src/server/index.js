@@ -17,9 +17,16 @@ app.use(cors())
 app.use(express.static("public"));
 
 app.get("*", (req, res, next) => {
-  const currentRoute = routes.find(route => matchPath(req.url, route));
+  let match;
+  let currentRoute = routes.find(route => {
+    let matchTest = matchPath(req.url, route);
+    if (matchTest) {
+      match = matchTest;
+      return true;
+    }
+  });
 
-  const fetchInitialState = currentRoute.component.fetchInitialState && currentRoute.component.fetchInitialState();
+  const fetchInitialState = currentRoute.loadData && currentRoute.loadData(match.params);
 
   Promise.resolve(fetchInitialState)
     .then(initialState => {

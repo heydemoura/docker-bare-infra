@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-
+import { api } from '../../config.js';
 import RepositoryList from '../../components/RepositoryList';
 
 export default class UserRepos extends React.Component {
@@ -15,23 +15,21 @@ export default class UserRepos extends React.Component {
       initialState = props.staticContext.initialState;
     }
 
-    this.state = { repositories: initialState };
+    this.state = { ...initialState };
   }
 
   componentDidMount() {
     if (!this.state.repositories) {
-      UserRepos.fetchInitialState()
-        .then(repositories => this.setState({ repositories }));
+      UserRepos.fetchInitialState(this.props.match.params)
+        .then(repositories => this.setState({ repositories }))
+        .catch(error => this.setState({...this.state, error: error.response.data}));
     }
   }
 
-  static fetchInitialState() {
-    return axios({
-      method: "GET",
-      url: "https://api.github.com/users/heydemoura/repos"
-    })
-    .then(response => response.data)
-    .catch(error => console.log(error));
+  static fetchInitialState(params) {
+    return axios(api.getUserRepos(params.username))
+    .then(response => ({ repositories: response.data }))
+    .catch(error => ({ error: error.response.data }))
   }
 
   handleRepositoriesData(repositories) {
@@ -39,16 +37,23 @@ export default class UserRepos extends React.Component {
       .reduce((acc, curr, index) => (acc.push(repositories[curr]) && acc), []);
   }
 
-  render () {
+  renderRepositoryList(repos, error) {
     const { handleRepositoriesData } = this;
-    const { repositories } = this.state;
+    if (Array.isArray(repos) && repos.length ) {
+      return <RepositoryList repositories={handleRepositoriesData(repos)} />;
+    } else {
+      return <h3>{error.message}</h3>
+    }
+  }
+
+  render () {
+    const { renderRepositoryList } = this;
+    const { repositories, error } = this.state;
+    console.log(error);
     return (
       <div>
         <h1>Repositories</h1>
-        { repositories ?
-            <RepositoryList repositories={handleRepositoriesData(repositories)} /> :
-            <h3>Something Happened</h3>
-        }
+        { renderRepositoryList.bind(this)(repositories, error) }
       </div>
     )
   }
