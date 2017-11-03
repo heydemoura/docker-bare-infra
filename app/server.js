@@ -20794,8 +20794,7 @@ var User = function (_React$Component) {
       if (user) {
         return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
           "div",
-          {
-            __source: {
+          { className: "page", __source: {
               fileName: _jsxFileName,
               lineNumber: 39
             },
@@ -20980,7 +20979,7 @@ app.get("*", function (req, res, next) {
       })
     ));
 
-    res.send("\n        <!DOCTYPE html>\n          <head>\n            <title>Super Duper Server Side Rendered React Application</title>\n            <link rel=\"stylesheet\" href=\"/css/main.css\">\n            <script src=\"/bundle.js\" defer></script>\n            <script>window.__initialState__ = " + JSON.stringify(initialState) + "</script>\n          </head>\n          <body>\n            <div id=\"root\">" + markup + "</div>\n          </body>\n        </html>\n      ");
+    res.send("\n        <!DOCTYPE html>\n          <head>\n            <title>Super Duper Server Side Rendered React Application</title>\n            <meta charset=\"utf-8\">\n            <meta name=\"viewport\" content=\"width=device-width, initial-scale=1, shrink-to-fit=no\">\n            <link rel=\"stylesheet\" href=\"/css/main.css\">\n            <script src=\"/bundle.js\" defer></script>\n            <script>window.__initialState__ = " + JSON.stringify(initialState) + "</script>\n          </head>\n          <body>\n            <div id=\"root\">" + markup + "</div>\n          </body>\n        </html>\n      ");
   }).catch(next);
 });
 
@@ -51009,8 +51008,7 @@ var UserRepos = function (_React$Component) {
       console.log(error);
       return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
         "div",
-        {
-          __source: {
+        { className: "page", __source: {
             fileName: _jsxFileName,
             lineNumber: 54
           },
@@ -51167,7 +51165,7 @@ var _jsxFileName = "/u01/Projects/Gronda/app/src/shared/components/Repository/in
           },
           __self: _this
         },
-        "Watchers: ",
+        "\uD83D\uDC40",
         props.watchers
       ),
       __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -51179,7 +51177,7 @@ var _jsxFileName = "/u01/Projects/Gronda/app/src/shared/components/Repository/in
           },
           __self: _this
         },
-        "Stars: ",
+        "\u2B50",
         props.stargazers_count
       ),
       __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -51191,7 +51189,7 @@ var _jsxFileName = "/u01/Projects/Gronda/app/src/shared/components/Repository/in
           },
           __self: _this
         },
-        "Forks: ",
+        "\uD83C\uDF74",
         props.forks
       )
     )

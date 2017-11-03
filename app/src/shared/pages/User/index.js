@@ -36,7 +36,7 @@ export default class User extends React.Component {
 
     if (user) {
       return (
-        <div>
+        <div className="page">
           <h1>{this.state.user.name}</h1>
           <ul>
             <li><a href={`/user/${user.login}/repos`}>Repositories</a></li>

@@ -41,6 +41,8 @@ app.get("*", (req, res, next) => {
         <!DOCTYPE html>
           <head>
             <title>Super Duper Server Side Rendered React Application</title>
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
             <link rel="stylesheet" href="/css/main.css">
             <script src="/bundle.js" defer></script>
             <script>window.__initialState__ = ${JSON.stringify(initialState)}</script>

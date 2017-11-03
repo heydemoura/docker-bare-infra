@@ -12320,8 +12320,7 @@ var User = function (_React$Component) {
       if (user) {
         return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
           "div",
-          {
-            __source: {
+          { className: "page", __source: {
               fileName: _jsxFileName,
               lineNumber: 39
             },
@@ -28703,8 +28702,7 @@ var UserRepos = function (_React$Component) {
       console.log(error);
       return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
         "div",
-        {
-          __source: {
+        { className: "page", __source: {
             fileName: _jsxFileName,
             lineNumber: 54
           },
@@ -28861,7 +28859,7 @@ var _jsxFileName = "/u01/Projects/Gronda/app/src/shared/components/Repository/in
           },
           __self: _this
         },
-        "Watchers: ",
+        "\uD83D\uDC40",
         props.watchers
       ),
       __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -28873,7 +28871,7 @@ var _jsxFileName = "/u01/Projects/Gronda/app/src/shared/components/Repository/in
           },
           __self: _this
         },
-        "Stars: ",
+        "\u2B50",
         props.stargazers_count
       ),
       __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -28885,7 +28883,7 @@ var _jsxFileName = "/u01/Projects/Gronda/app/src/shared/components/Repository/in
           },
           __self: _this
         },
-        "Forks: ",
+        "\uD83C\uDF74",
         props.forks
       )
     )

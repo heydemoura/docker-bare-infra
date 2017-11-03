@@ -52,6 +52,7 @@ button {
   width: 100%;
   min-height: 720px;
   align-items: center;
+  text-align: center;
 }
 
 .page .page-title {

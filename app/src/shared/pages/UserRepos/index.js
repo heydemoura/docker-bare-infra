@@ -51,7 +51,7 @@ export default class UserRepos extends React.Component {
     const { repositories, error } = this.state;
     console.log(error);
     return (
-      <div>
+      <div className="page">
         <h1>Repositories</h1>
         { renderRepositoryList.bind(this)(repositories, error) }
       </div>

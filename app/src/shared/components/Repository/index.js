@@ -11,9 +11,9 @@ export default props => (
       <a href={props.html_url}>View on GitHub</a>
     </div>
     <div className="repository-data">
-      <div>Watchers: {props.watchers}</div>
-      <div>Stars: {props.stargazers_count}</div>
-      <div>Forks: {props.forks}</div>
+      <div>👀{props.watchers}</div>
+      <div>⭐{props.stargazers_count}</div>
+      <div>🍴{props.forks}</div>
     </div>
   </div>
 )
