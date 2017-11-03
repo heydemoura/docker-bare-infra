@@ -20,11 +20,9 @@ export default class User extends React.Component {
 
   componentDidMount() {
     if (!this.state.user) {
-      User.fetchInitialState(this.props.match.params)
-        .then(user => this.setState({user}))
-        .catch(error => this.setState({...this.state, error: error.response.data}))
+      return User.fetchInitialState(this.props.match.params)
+        .then(({user, error}) => this.setState({user, error}))
     }
-    
   }
 
   static fetchInitialState(params) {
@@ -35,6 +33,7 @@ export default class User extends React.Component {
 
   render () {
     const { user, error } = this.state;
+
     if (user) {
       return (
         <div>
@@ -43,10 +42,12 @@ export default class User extends React.Component {
             <li><a href={`/user/${user.login}/repos`}>Repositories</a></li>
           </ul>
         </div>
-      )
-    } else {
-      return <h1>{error.message}</h1>
+      );
+    } else if (error && error.message) {
+      return <h1>{error && error.message}</h1>;
     }
-  }
 
+    return <h1>Loading</h1>;
+    
+  }
 }

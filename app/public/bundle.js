@@ -27350,7 +27350,10 @@ var App = function App() {
 var routes = [{
   path: "/",
   exact: true,
-  component: __WEBPACK_IMPORTED_MODULE_0__pages_Home__["a" /* default */]
+  component: __WEBPACK_IMPORTED_MODULE_0__pages_Home__["a" /* default */],
+  loadData: function loadData() {
+    return {};
+  }
 }, {
   path: "/user/:username",
   exact: true,
@@ -27374,6 +27377,9 @@ var routes = [{
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios__ = __webpack_require__(65);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_axios__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__User__ = __webpack_require__(260);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Home_css__ = __webpack_require__(268);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Home_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__Home_css__);
 var _jsxFileName = "/u01/Projects/Gronda/app/src/shared/pages/Home/index.js";
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -27383,6 +27389,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+
 
 
 
@@ -27408,14 +27416,31 @@ var Home = function (_React$Component) {
   }
 
   _createClass(Home, [{
+    key: "handleUsernameChange",
+    value: function handleUsernameChange(_ref) {
+      var username = _ref.currentTarget.value;
+
+      this.setState(Object.assign({}, this.state, { username: username }));
+    }
+  }, {
+    key: "handleSubmit",
+    value: function handleSubmit(e) {
+      var username = this.state.username;
+
+      this.props.history.push("user/" + username);
+    }
+  }, {
     key: "render",
     value: function render() {
+      var handleSubmit = this.handleSubmit,
+          handleUsernameChange = this.handleUsernameChange;
+
       return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
         "div",
         {
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 21
+            lineNumber: 33
           },
           __self: this
         },
@@ -27424,81 +27449,67 @@ var Home = function (_React$Component) {
           {
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 22
+              lineNumber: 34
             },
             __self: this
           },
           "Super Duper Server Side Rendered React App"
         ),
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          "ul",
+          "div",
           {
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 23
+              lineNumber: 35
             },
             __self: this
           },
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            "li",
-            {
-              __source: {
+            "form",
+            { onSubmit: handleSubmit.bind(this), __source: {
                 fileName: _jsxFileName,
-                lineNumber: 24
+                lineNumber: 36
               },
               __self: this
             },
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-              "a",
-              { href: "/pokemon/1", __source: {
+              "label",
+              {
+                __source: {
                   fileName: _jsxFileName,
-                  lineNumber: 25
+                  lineNumber: 37
                 },
                 __self: this
               },
-              "Bulbasaur"
-            )
-          ),
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            "li",
-            {
-              __source: {
-                fileName: _jsxFileName,
-                lineNumber: 27
-              },
-              __self: this
-            },
+              "Username:",
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input", { type: "text", name: "username", onChange: handleUsernameChange.bind(this), __source: {
+                  fileName: _jsxFileName,
+                  lineNumber: 39
+                },
+                __self: this
+              })
+            ),
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-              "a",
-              { href: "/pokemon/4", __source: {
+              "button",
+              { type: "submit", __source: {
                   fileName: _jsxFileName,
-                  lineNumber: 28
+                  lineNumber: 41
                 },
                 __self: this
               },
-              "Charmander"
-            )
-          ),
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            "li",
-            {
-              __source: {
-                fileName: _jsxFileName,
-                lineNumber: 30
-              },
-              __self: this
-            },
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-              "a",
-              { href: "/pokemon/7", __source: {
-                  fileName: _jsxFileName,
-                  lineNumber: 31
-                },
-                __self: this
-              },
-              "Squirtle"
+              "Search"
             )
           )
+        ),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          "a",
+          { href: "/blog", __source: {
+              fileName: _jsxFileName,
+              lineNumber: 46
+            },
+            __self: this
+          },
+          "Blog"
         )
       );
     }
@@ -28445,10 +28456,10 @@ var User = function (_React$Component) {
       var _this2 = this;
 
       if (!this.state.user) {
-        User.fetchInitialState(this.props.match.params).then(function (user) {
-          return _this2.setState({ user: user });
-        }).catch(function (error) {
-          return _this2.setState(Object.assign({}, _this2.state, { error: error.response.data }));
+        return User.fetchInitialState(this.props.match.params).then(function (_ref) {
+          var user = _ref.user,
+              error = _ref.error;
+          return _this2.setState({ user: user, error: error });
         });
       }
     }
@@ -28459,13 +28470,14 @@ var User = function (_React$Component) {
           user = _state.user,
           error = _state.error;
 
+
       if (user) {
         return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
           "div",
           {
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 40
+              lineNumber: 39
             },
             __self: this
           },
@@ -28474,7 +28486,7 @@ var User = function (_React$Component) {
             {
               __source: {
                 fileName: _jsxFileName,
-                lineNumber: 41
+                lineNumber: 40
               },
               __self: this
             },
@@ -28485,7 +28497,7 @@ var User = function (_React$Component) {
             {
               __source: {
                 fileName: _jsxFileName,
-                lineNumber: 42
+                lineNumber: 41
               },
               __self: this
             },
@@ -28494,7 +28506,7 @@ var User = function (_React$Component) {
               {
                 __source: {
                   fileName: _jsxFileName,
-                  lineNumber: 43
+                  lineNumber: 42
                 },
                 __self: this
               },
@@ -28502,7 +28514,7 @@ var User = function (_React$Component) {
                 "a",
                 { href: "/user/" + user.login + "/repos", __source: {
                     fileName: _jsxFileName,
-                    lineNumber: 43
+                    lineNumber: 42
                   },
                   __self: this
                 },
@@ -28511,19 +28523,31 @@ var User = function (_React$Component) {
             )
           )
         );
-      } else {
+      } else if (error && error.message) {
         return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
           "h1",
           {
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 48
+              lineNumber: 47
             },
             __self: this
           },
-          error.message
+          error && error.message
         );
       }
+
+      return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+        "h1",
+        {
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 50
+          },
+          __self: this
+        },
+        "Loading"
+      );
     }
   }], [{
     key: "fetchInitialState",
@@ -28869,6 +28893,12 @@ var api = {
     };
   }
 };
+
+/***/ }),
+/* 268 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
 
 /***/ })
 /******/ ]);
