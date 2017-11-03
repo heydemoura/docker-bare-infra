@@ -6,12 +6,15 @@ services:
     image: reactapp:test
     ports:
       - "3000:3000"
+    environment:
+      NODE_ENV: production
+      PORT: 3000
 
   db:
     image: mysql:5.7
     volumes:
       - db_data:/var/lib/mysql
-      - ./myqsl/scripts:/docker-entrypoint-initdb.d
+      - ./mysql/scripts:/docker-entrypoint-initdb.d
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: supersecretpw
@@ -28,7 +31,9 @@ services:
   wordpress:
     depends_on:
       - db
-    image: wordpress:latest
+    image: wordpress
+    volumes:
+      - ./wordpress/wp-cli.phar:/usr/local/bin/wp-cli
     ports:
       - "8080:80"
     restart: always
@@ -51,4 +56,3 @@ services:
 
 volumes:
   db_data:
-
