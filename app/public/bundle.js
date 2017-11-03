@@ -27352,12 +27352,12 @@ var routes = [{
   exact: true,
   component: __WEBPACK_IMPORTED_MODULE_0__pages_Home__["a" /* default */]
 }, {
-  path: "/user/:username?",
+  path: "/user/:username",
   exact: true,
   component: __WEBPACK_IMPORTED_MODULE_1__pages_User__["a" /* default */],
   loadData: __WEBPACK_IMPORTED_MODULE_1__pages_User__["a" /* default */].fetchInitialState
 }, {
-  path: "/user/:username?/repos",
+  path: "/user/:username/repos",
   exact: true,
   component: __WEBPACK_IMPORTED_MODULE_2__pages_UserRepos__["a" /* default */],
   loadData: __WEBPACK_IMPORTED_MODULE_2__pages_UserRepos__["a" /* default */].fetchInitialState

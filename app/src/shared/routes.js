@@ -9,13 +9,13 @@ const routes = [
     component: Home
   },
   {
-    path: "/user/:username?",
+    path: "/user/:username",
     exact: true,
     component: User,
     loadData: User.fetchInitialState
   },
   {
-    path: "/user/:username?/repos",
+    path: "/user/:username/repos",
     exact: true,
     component: UserRepos,
     loadData: UserRepos.fetchInitialState
