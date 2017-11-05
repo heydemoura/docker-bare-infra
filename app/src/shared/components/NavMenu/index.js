@@ -5,7 +5,7 @@ export default props => (
   <div className="navmenu">
     <ul>
       <li>
-        <a href="/blog">Home</a>
+        <a href="/home">Home</a>
       </li>
       <li>
         <a href="/blog">Blog</a>
