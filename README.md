@@ -74,6 +74,16 @@ Unfortunately I wasn't capable to setup wp-admin to preserve the URL when you ac
 
 I could use Wordpress MultiSite, but for that i should be using port 80 for Wordpress, that i am not. But even in that case I could do some hacking like on [this page](https://benohead.com/wordpress-running-multisite-different-port/), but this hack could be reverted by a future Wordpress update.
 
+For the same cause, if you are performing a clean Wordpress installation, you should proceed with the installation script accessing the container itself.
+
+_Blog_
+
+* mydomain.com:8080
+
+_Home_
+
+* mydomain.com:8081
+
 **Permalinks**
 
 In order to enable permalinks for posts, `htaccess` files for each wordpress container, they are located in `wordpress/`. For the sake of this example to work properly, copy both files to the respective containers:
