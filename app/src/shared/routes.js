@@ -1,8 +1,12 @@
+/**
+ * Routes configuration
+ * @module reactapp/routes
+ **/
 import Home from "./pages/Home";
 import User from "./pages/User";
 import UserRepos from "./pages/UserRepos";
 
-const routes = [
+export default const routes = [
   {
     path: "/",
     exact: true,
@@ -22,5 +26,3 @@ const routes = [
     loadData: UserRepos.fetchInitialState
   }
 ];
-
-export default routes;

@@ -1,3 +1,7 @@
+/**
+ * Server setup
+ * Route and render React component
+ **/
 import express from "express";
 import cors from "cors";
 import React from "react";

@@ -1,3 +1,4 @@
+/** User Repositories Page **/
 import React from "react";
 import axios from "axios";
 import { api } from '../../config.js';
@@ -26,6 +27,10 @@ export default class UserRepos extends React.Component {
     }
   }
 
+  /**
+   * Fetch initial component state
+   * @param {object} params - Route params
+   */
   static fetchInitialState(params) {
     return axios(api.getUserRepos(params.username))
     .then(response => ({ repositories: response.data }))

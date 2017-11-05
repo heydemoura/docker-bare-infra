@@ -1,3 +1,4 @@
+/** Home Page **/
 import React from "react";
 import axios from "axios";
 import User from "../User";

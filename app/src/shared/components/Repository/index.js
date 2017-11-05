@@ -1,7 +1,11 @@
+/** Repository Component **/
 import React from "react";
 
 import "./Repository.css"
 
+/**
+ * Renders a card with repository info
+ */
 export default props => (
   <div className="repository">
     <div className="repository-name">

@@ -1,3 +1,7 @@
+/**
+ * Client setup
+ * Route and render React components to DOM
+ */
 import React from "react";
 import { render } from "react-dom";
 import { BrowserRouter } from "react-router-dom";

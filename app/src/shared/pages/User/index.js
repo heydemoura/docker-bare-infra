@@ -1,3 +1,4 @@
+/** User Profile Page **/
 import React from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
@@ -25,6 +26,10 @@ export default class User extends React.Component {
     }
   }
 
+  /**
+   * Fetch initial component state
+   * @param {object} params - Route params
+   */
   static fetchInitialState(params) {
     return axios(api.getUser(params.username))
     .then(response => ({ user: response.data }))
