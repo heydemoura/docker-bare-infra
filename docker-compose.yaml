@@ -18,7 +18,7 @@ services:
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: supersecretpw
-      MYSQL_DATABASE: wordpress
+      MYSQL_DATABASE: wp_blog
       MYSQL_USER: wordpress
       MYSQL_PASSWORD: wordpress
 
@@ -26,22 +26,34 @@ services:
     image: adminer
     restart: always
     ports:
-      - "8081:8080"
+      - "8082:8080"
 
-  wordpress:
+  blog:
     depends_on:
       - db
     image: wordpress
-    volumes:
-      - ./wordpress/wp-cli.phar:/usr/local/bin/wp-cli
     ports:
       - "8080:80"
     restart: always
     environment:
       WORDPRESS_DB_HOST: db:3306
-      WORDPRESS_DB_USER: wordpress
-      WORDPRESS_DB_PASSWORD: wordpress
-  
+      WORDPRESS_DB_USER: root
+      WORDPRESS_DB_PASSWORD: supersecretpw
+      WORDPRESS_DB_NAME: wp_blog
+
+  home:
+    depends_on:
+      - db
+    image: wordpress
+    ports:
+      - "8081:80"
+    restart: always
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_USER: root
+      WORDPRESS_DB_PASSWORD: supersecretpw
+      WORDPRESS_DB_NAME: wp_home
+
   nginx:
     image: nginx:latest
     ports:
