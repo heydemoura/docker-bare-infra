@@ -4,14 +4,19 @@ services:
   reactapp:
     build: app/
     image: reactapp:test
+    networks:
+      - frontend
     ports:
       - "3000:3000"
+    restart: always
     environment:
       NODE_ENV: production
       PORT: 3000
 
   db:
     image: mysql:5.7
+    networks:
+      - backend
     volumes:
       - db_data:/var/lib/mysql
       - ./mysql/scripts:/docker-entrypoint-initdb.d
@@ -24,14 +29,19 @@ services:
 
   adminer:
     image: adminer
+    networks:
+      - backend
     restart: always
     ports:
       - "8081:8080"
 
-  wordpress:
+  blog:
     depends_on:
       - db
     image: wordpress
+    networks:
+      - frontend
+      - backend
     volumes:
       - ./wordpress/wp-cli.phar:/usr/local/bin/wp-cli
     ports:
@@ -41,13 +51,18 @@ services:
       WORDPRESS_DB_HOST: db:3306
       WORDPRESS_DB_USER: wordpress
       WORDPRESS_DB_PASSWORD: wordpress
+      WORDPRESS_INSTALL_TYPE: "multisite"
+      WORDPRESS_SITE_URL: "http://localhost/blog"
   
   nginx:
     image: nginx:latest
+    networks:
+      - frontend
+      - backend
     ports:
       - "80:80"
     environment:
-      NGINX_HOST: 172.18.0.1
+      NGINX_HOST: nginx
     volumes:
       - ./nginx/conf.d/:/etc/nginx/conf.d/
       - ./nginx/default.d/:/etc/nginx/default.d/
@@ -56,3 +71,7 @@ services:
 
 volumes:
   db_data:
+
+networks:
+  frontend:
+  backend:
