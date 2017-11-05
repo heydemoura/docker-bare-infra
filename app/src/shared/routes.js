@@ -6,7 +6,7 @@ import Home from "./pages/Home";
 import User from "./pages/User";
 import UserRepos from "./pages/UserRepos";
 
-export default const routes = [
+export default [
   {
     path: "/",
     exact: true,
