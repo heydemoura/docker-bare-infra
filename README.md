@@ -16,6 +16,13 @@ Instructions on how to install:
 * [Docker installation instructions](https://docs.docker.com/engine/installation/)
 * [Compose installation instructions](https://docs.docker.com/compose/install/)
 
+### TL;DR
+
+```sh
+git clone https://github.com/heydemoura/docker-bare-infra.git --depth=1 myserver && cd myserver
+docker-compose up -d
+```
+
 ### MySQL setup
 
 If you are migrating a mysql dependant application, is better if you dump your databases and put the .sql scripts inside the `mysql/scripts/` directory. MySQL docker entrypoint will run any scripts inside this folder upon initialization of the mysql docker container.
