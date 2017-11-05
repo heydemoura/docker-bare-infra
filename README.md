@@ -84,6 +84,8 @@ _Home_
 
 * mydomain.com:8081
 
+After the installation process, update the **siteurl** for the containers to be: _mydomain.com/blog_ and _mydomain.com/hom_ respectively. Or esle it will not work correctly.
+
 **Permalinks**
 
 In order to enable permalinks for posts, `htaccess` files for each wordpress container, they are located in `wordpress/`. For the sake of this example to work properly, copy both files to the respective containers:
