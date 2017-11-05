@@ -63,9 +63,20 @@ Setup your database name with the environment variables on `docker-compose.yaml`
 
 By default, Wordpress default configuration rewrites the URL when you try to access `wp-admin`. For a Wordpress standalone server this is pretty OK, but for this purpose of running it on a container under a reverse proxy, this can be a pain, when you try to access `/blog/wp-admin` it keeps sending you to the admin but the URL is rewritten to `/wp-admin`.
 
-Unfortunately I wasn't capable to setup wp-admin to preserve the URL when you access `/blog/wp-admin`. By default Nginx will redirect you to the container itself, accessing via the configured port for wordpress container.
+Unfortunately I wasn't capable to setup wp-admin to preserve the URL when you access `/blog/wp-admin`. By default Nginx will redirect you to the container itself, accessing via the exposed port from wordpress container.
 
 I could use Wordpress MultiSite, but for that i should be using port 80 for Wordpress, that i am not. But even in that case I could do some hacking like on [this page](https://benohead.com/wordpress-running-multisite-different-port/), but this hack could be reverted by a future Wordpress update.
+
+**Permalinks**
+
+In order to enable permalinks for posts, `htaccess` files for each wordpress container, they are located in `wordpress/`. For the sake of this example to work properly, copy both files to the respective containers:
+
+```sh
+docker cp wordpress/blog_htaccess myserver_blog:/var/www/html/.htaccess
+docker cp wordpress/home_htaccess myserver_home:/var/www/html/.htaccess
+```
+
+This should enable proper permalinks rewrite rules for those containers.
 
 ```yaml
 ...
